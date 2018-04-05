@@ -162,7 +162,23 @@
     }
     return CGSizeMake(self.frame.size.width, height);
 }
-
+- (TagView *)insertTag:(NSString *)title atIndex:(NSInteger)index{
+    TagView *tagView = [[TagView alloc] initWithTitle:title];
+    
+    [tagView setTextColor: [self textColor]];
+    [tagView setBackgroundColor: [self tagBackgroundColor]];
+    [tagView setCornerRadius: [self cornerRadius]];
+    [tagView setBorderWidth: [self borderWidth]];
+    [tagView setBorderColor: [self borderColor]];
+    [tagView setPaddingY: [self paddingY]];
+    [tagView setPaddingX: [self paddingX]];
+    [tagView setTextFont: [self textFont]];
+    
+    [tagView addTarget:self action:@selector(tagPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self addTagView: tagView atIndex:index];
+    
+    return tagView;}
 - (TagView *)addTag:(NSString *)title {
     TagView *tagView = [[TagView alloc] initWithTitle:title];
     
@@ -181,7 +197,10 @@
     
     return tagView;
 }
-
+- (void) addTagView:(TagView *)tagView atIndex:(NSInteger)index{
+    [[self tagViews] insertObject:tagView atIndex:index];
+    [self rearrangeViews];
+}
 - (void) addTagView:(TagView *)tagView {
     [[self tagViews] insertObject:tagView atIndex:[self.tagViews count]];
     [self rearrangeViews];

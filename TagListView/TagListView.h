@@ -40,6 +40,7 @@ typedef NS_ENUM(NSUInteger, TagListAlignment) {
 
 - (void)addTagsAccordingToDataSourceArray:(NSArray<NSString *> *)dataSourceArray withOnTapForEach:(void(^)(TagView *tagView))onTapBlock;
 - (TagView *)addTag:(NSString *)title;
+- (TagView *)insertTag:(NSString *)title atIndex:(NSInteger)index;
 - (void)removeTag:(NSString *)title;
 - (void)removeAllTags;
 
